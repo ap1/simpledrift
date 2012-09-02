@@ -1,12 +1,9 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
 
-# Compiled Dynamic libraries
-*.so
+*.ncb
+*.suo
+*.user
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+Debug/*
+
+Release/*
+
