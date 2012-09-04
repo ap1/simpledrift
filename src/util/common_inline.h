@@ -31,6 +31,8 @@
 #define CLR_GREY                 (0x00aaaaaa)
 #define CLR_DARKGREY             (0x00555555)
 
+#define TEST_MODE
+
 typedef unsigned int uint;
 
 // -- disables the fopen_s warning. I don't like doing this, 

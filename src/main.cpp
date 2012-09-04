@@ -11,6 +11,7 @@
 
 #include "common_inline.h"
 #include "vecs.h"
+#include "car.h"
 
 #include <windows.h>
 
@@ -48,11 +49,13 @@ void setVSync(int interval);
 // global variables
 // ----------------------------------------
 
+nissan_370z c1;
+
 // window pointers
 int mainWindow = 0;
 
 // window size
-int W = 1280, H = 720;
+int W = 800, H = 800;
 
 // mouse state
 tmstate mouse;
@@ -107,7 +110,7 @@ void init(int argc, char* argv[]){
   glutMouseFunc    (mainMousepress);
   glutMotionFunc   (mainMousemove);
 
-  glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
+  glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
 
   glutIdleFunc(idle);
 
@@ -126,6 +129,15 @@ void set_camera(){
 
   glutSetWindow(mainWindow); 
 
+  // camera
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  //gluPerspective(curSc_->cam().fovy()*180.0f/M_PI, curSc_->cam().aspect(), 0.1f, 10000.0f);
+  gluOrtho2D(-W/100, W/100, -H/100, H/100);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
 }
 
 // ----------------------------------------
@@ -136,6 +148,13 @@ void mainDisplay(){
 
   // Main rendering code
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  float bodytheta   = 45.0f * M_PI / 180.0f;
+  float wheeltheta  =  0.0f * M_PI / 180.0f;
+
+  c1.draw(vec2f(0.0f,0.0f), vec2f(-sin(bodytheta),cos(bodytheta)),
+                            vec2f(-sin(wheeltheta),cos(wheeltheta
+                            )));
 
   glutSwapBuffers();
 
